@@ -15,6 +15,13 @@
       </list>
     </option>
   </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\aryan\OneDrive\Desktop\Classes\Senior Design\RiceBraille\.idea" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1RWilKXNgou0SL21ziOh7BqChFe" />
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
