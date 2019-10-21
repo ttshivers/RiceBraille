@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a31789c-8865-4d64-bbeb-dac40e4b2170" name="Default Changelist" comment="" />
+    <list default="true" id="40ab912c-cd52-4c07-85ca-1c9474f53305" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SeniorDesign.py" beforeDir="false" afterPath="$PROJECT_DIR$/SeniorDesign.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/res.jpg" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +18,9 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RWilKXNgou0SL21ziOh7BqChFe" />
   <component name="PropertiesComponent">
@@ -33,15 +40,15 @@
   </component>
   <component name="RunManager">
     <configuration name="SeniorDesign" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="SeniorDesign" />
+      <module name="RiceBraille" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\colli\PycharmProjects\SeniorDesign\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SeniorDesign.py" />
@@ -64,12 +71,27 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0a31789c-8865-4d64-bbeb-dac40e4b2170" name="Default Changelist" comment="" />
+      <changelist id="40ab912c-cd52-4c07-85ca-1c9474f53305" name="Default Changelist" comment="" />
       <created>1569789403371</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1569789403371</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="hooplah" />
+    <option name="LAST_COMMIT_MESSAGE" value="hooplah" />
   </component>
 </project>
