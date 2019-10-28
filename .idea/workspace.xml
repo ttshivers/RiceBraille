@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40ab912c-cd52-4c07-85ca-1c9474f53305" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SeniorDesign.py" beforeDir="false" afterPath="$PROJECT_DIR$/SeniorDesign.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/res.jpg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +23,7 @@
   </component>
   <component name="ProjectId" id="1RWilKXNgou0SL21ziOh7BqChFe" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -77,6 +77,14 @@
       <option name="presentableId" value="Default" />
       <updated>1569789403371</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added function to manage the color masks and clean up code">
+      <created>1571629054010</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1571629054010</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -84,7 +92,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -92,6 +102,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hooplah" />
-    <option name="LAST_COMMIT_MESSAGE" value="hooplah" />
+    <MESSAGE value="Added function to manage the color masks and clean up code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added function to manage the color masks and clean up code" />
   </component>
 </project>
