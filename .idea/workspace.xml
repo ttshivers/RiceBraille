@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40ab912c-cd52-4c07-85ca-1c9474f53305" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calibration.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibration_marker_image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibration_marker_image1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibration_marker_image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibration_marker_image3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibration_test_page1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibration_test_page1_marked.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibration_test_page2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibration_test_page2_marked.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SeniorDesign.py" beforeDir="false" afterPath="$PROJECT_DIR$/SeniorDesign.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +35,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\colli\PycharmProjects\RiceBraille\images" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -38,7 +52,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.Calibration">
+    <configuration name="Calibration" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SeniorDesign" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Calibration.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="SeniorDesign" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RiceBraille" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -62,6 +97,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Calibration" />
         <item itemvalue="Python.SeniorDesign" />
       </list>
     </recent_temporary>
@@ -84,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571629054010</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Not really sure">
+      <created>1572278518972</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1572278518972</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -103,6 +146,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hooplah" />
     <MESSAGE value="Added function to manage the color masks and clean up code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added function to manage the color masks and clean up code" />
+    <MESSAGE value="Not really sure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Not really sure" />
   </component>
 </project>
