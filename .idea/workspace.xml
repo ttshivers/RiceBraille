@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40ab912c-cd52-4c07-85ca-1c9474f53305" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/images/calibration_test_fullPage_marked.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/calibration_test_page3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/calibration_test_page3_marked.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/photoOfPaperWithMarkers.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marker_images/marker_1614.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marker_images/marker_2023.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marker_images/marker_2226.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marker_images/marker_2265.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marker_images/marker_2421.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/marker_images/marker_2593.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/CalibrationTestImage4_marked.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibrationTestImage4.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/fourCornersCalibrationTest.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/fourCornersCalibrationTest_marked.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/manySquaresCalibrationTest.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/manySquaresCalibrationTest_marked.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Calibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/Calibration.py" afterDir="false" />
     </list>
@@ -135,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572282558871</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added more test calibration photos">
+      <created>1572896451790</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1572896451790</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,6 +159,7 @@
     <MESSAGE value="Added function to manage the color masks and clean up code" />
     <MESSAGE value="Not really sure" />
     <MESSAGE value="Got ar_markers working for calibration!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Got ar_markers working for calibration!" />
+    <MESSAGE value="Added more test calibration photos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more test calibration photos" />
   </component>
 </project>
