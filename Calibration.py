@@ -12,7 +12,7 @@ marker = HammingMarker.generate()
 
 
 # test_image = cv.imread("images/calibration_marker_image3.jpg")
-test_image = cv.imread("images/calibration_test_page2.jpg")
+test_image = cv.imread("images/photoOfPaperWithMarkers.jpg")
 
 markers = ar.detect_markers(test_image)
 print(test_image.shape)
@@ -20,7 +20,7 @@ print(markers)
 for marker in markers:
     marker.highlite_marker(test_image)
 
-cv.imwrite('images/calibration_test_page2_marked.jpg', test_image)
+cv.imwrite('images/calibration_test_fullPage_marked.jpg', test_image)
 # cv.imshow('test_image', test_image)
 # cv.waitKey(0)
 # cv.destroyAllWindows()

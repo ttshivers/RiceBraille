@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40ab912c-cd52-4c07-85ca-1c9474f53305" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Calibration.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/calibration_marker_image1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/calibration_marker_image1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/calibration_marker_image2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/calibration_marker_image3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/calibration_test_page1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/calibration_test_page1_marked.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/calibration_test_page2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/calibration_test_page2_marked.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibration_test_fullPage_marked.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibration_test_page3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/calibration_test_page3_marked.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/photoOfPaperWithMarkers.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marker_images/marker_1614.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marker_images/marker_2023.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marker_images/marker_2226.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marker_images/marker_2265.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marker_images/marker_2421.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/marker_images/marker_2593.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SeniorDesign.py" beforeDir="false" afterPath="$PROJECT_DIR$/SeniorDesign.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/Calibration.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572278518972</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Got ar_markers working for calibration!">
+      <created>1572282558871</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1572282558871</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,6 +155,7 @@
     <MESSAGE value="hooplah" />
     <MESSAGE value="Added function to manage the color masks and clean up code" />
     <MESSAGE value="Not really sure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Not really sure" />
+    <MESSAGE value="Got ar_markers working for calibration!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Got ar_markers working for calibration!" />
   </component>
 </project>
