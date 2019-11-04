@@ -15,7 +15,7 @@ ap.add_argument("-i", "--image", required = True,
 	help = "Path to the image to be scanned")
 args = vars(ap.parse_args())
 '''
-image_file = "images/armarkerCornerMissing.jpg"
+image_file = "images/bigAtAngle.jpg"
 # load the image and compute the ratio of the old height
 # to the new height, clone it, and resize it
 image = cv2.imread(image_file)
