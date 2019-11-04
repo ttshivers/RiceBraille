@@ -8,6 +8,15 @@ ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", help="path to the image")
 args = vars(ap.parse_args())
 
+def set_masks(colors, delta):
+    bounds = [(np.array([color - delta, 100, 100]), np.array([color + delta, 255, 255])) for color in colors]
+    masks = [cv.inRange(hsv, bound[0], bound[1]) for bound in bounds]
+    mask = masks[0]
+    for i in range(1, len(masks)):
+        mask = mask | masks[i]
+    return mask
+
+
 # load the image
 image = cv.imread("images/blurNight.jpg")
 cv.namedWindow("Display Window", cv.WINDOW_AUTOSIZE)
@@ -15,7 +24,20 @@ cv.namedWindow("Display Window", cv.WINDOW_AUTOSIZE)
 # Convert BGR to HSV
 hsv = cv.cvtColor(image, cv.COLOR_BGR2HSV)
 # define range of blue color in HSV
+
+#### Collin's Code #####
+
+colors = [46, 100, 166, 130, 28, 146]
+delta = 10
+colormask = set_masks(colors, delta)
+res1 = cv.bitwise_and(image, image, mask=colormask)
+
+#########################
+
+
+#### Original un-simplified #########
 delta = 2.5
+
 lower_green = np.array([46 - delta, 100, 100])
 upper_green = np.array([46 + delta, 255, 255])
 
@@ -34,6 +56,8 @@ upper_yellow = np.array([28 + delta, 255, 255])
 lower_purple_two = np.array([146 - delta, 0, 0])
 upper_purple_two = np.array([146 + delta, 255, 255])
 
+####################################
+
 
 # Threshold the HSV image to get only blue colors
 # Threshold the HSV image to get only green colors
@@ -44,6 +68,8 @@ mask_pink = cv.inRange(hsv, lower_pink, upper_pink)
 mask_purple = cv.inRange(hsv, lower_purple, upper_purple)
 mask_yellow = cv.inRange(hsv, lower_yellow, upper_yellow)
 
+
+############ Aryan's Code ######################
 def maskMaker(mask_values, delta_h, delta_s):
     mask = False
     for val in mask_values:
@@ -78,5 +104,8 @@ cv.waitKey(0)
 cv.imshow('res', res)
 cv.waitKey(0)
 '''
+
+
+############################
 
 
