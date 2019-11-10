@@ -194,9 +194,11 @@ class VideoTracker:
             for i in range(len(x_centers)):
                 row_data = str(i) + '\t'
                 for box in range(8):
-                    row_data += str(x_centers[i][box]) + '\t' + str(y_centers[i][box]) + '\t'
-
-                outfile.write(row_data + '\n')
+                    if box != 7:
+                        row_data += str(x_centers[i][box]) + '\t' + str(y_centers[i][box]) + '\t'
+                    else:
+                        row_data += str(x_centers[8][box]) + '\t' + str(y_centers[8][box])
+                    outfile.write(row_data + '\n')
         return x_centers, y_centers
 
     def process_tracker(self, cap, multi_tracker, colors, video_out):
@@ -206,17 +208,15 @@ class VideoTracker:
         :param multi_tracker: OpenCV tracker object
         :param colors: Colors of each bounding box
         :param video_out: Output video path
-        :return: 
+        :return:
         """
         # Initialize Coordinate List
         x_centers = []
         y_centers = []
         frame_num = 0
 
-        #is_recording = False
+        # is_recording = False
         is_recording = True
-
-
 
         # Process video and track objects
         while cap.isOpened():
@@ -260,7 +260,6 @@ class VideoTracker:
                 break
 
         x_centers, y_centers = self.generate_output_file(x_centers, y_centers)
-
         return x_centers, y_centers
 
 
