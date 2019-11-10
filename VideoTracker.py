@@ -7,6 +7,13 @@ class VideoTracker:
     trackerTypes = ['BOOSTING', 'MIL', 'KCF', 'TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT']
 
     def __init__(self, video_path, tracker_type="CSRT", auto_calibrate=False, output_path='./test_output/output.mp4'):
+        """
+        init video tracker
+        :param video_path: Path of input video
+        :param tracker_type: type of OpenCV tracker to use, CSRT seems to work the best so far and is default
+        :param auto_calibrate: If True, will use pre-defined bounding boxes instead of manual
+        :param output_path: Path of output video, will create if does not exist
+        """
         # Create a video capture object to read videos
         self.cap = cv2.VideoCapture(video_path)
 
@@ -41,6 +48,13 @@ class VideoTracker:
         print(self.process_tracker(self.cap, multi_tracker, colors, video_out))
 
     def init_multitracker(self, bboxes, tracker_type, frame):
+        """
+        Init an Opencv tracker instance, given a set of bounding boxes (e.g. one for each finger), and type
+        :param bboxes: Bounding boxes
+        :param tracker_type: E.g. CSRT
+        :param frame: First frame, used for init
+        :return: multitracker instance
+        """
         # Create MultiTracker object
         multi_tracker = cv2.MultiTracker_create()
 
@@ -50,6 +64,11 @@ class VideoTracker:
         return multi_tracker
 
     def create_tracker_by_name(self, tracker_type):
+        """
+        Given input string, init the correct tracker
+        :param tracker_type: e.g. 'CSRT'
+        :return:
+        """
         # Create a tracker based on tracker name
         if tracker_type == self.trackerTypes[0]:
             tracker = cv2.TrackerBoosting_create()
@@ -77,6 +96,10 @@ class VideoTracker:
         return tracker
 
     def read_first_frame(self):
+        """
+        Reads first frame for purposes of calibration & tracker init
+        :return:
+        """
         # Read first frame
         success, frame = self.cap.read()
         frame = cv2.resize(frame, (1920, 1080))
@@ -91,6 +114,10 @@ class VideoTracker:
         return frame
 
     def manual_calibration(self):
+        """
+        Manually draw bounding boxes
+        :return: bounding boxes, first frame, color of each box
+        """
         frame = self.read_first_frame()
 
         # Select boxes
@@ -116,6 +143,10 @@ class VideoTracker:
         return bboxes, frame, colors
 
     def automatic_calibration(self):
+        """
+        Draw bounding boxes from predefined coordinates
+        :return: bounding boxes, first frame, color of each box
+        """
         frame = self.read_first_frame()
 
         # Select boxes
@@ -136,6 +167,12 @@ class VideoTracker:
         return bboxes, frame, colors
 
     def generate_output_file(self, x_centers, y_centers):
+        """
+        Generates tab delimited output file
+        :param x_centers: center of each box, x coord
+        :param y_centers: center of each box, y coord
+        :return:
+        """
         with open('BrailleOutput.txt', 'w+') as outfile:
             outfile.write('Frame\tX Coordinate 1'
                           '\tY Coordinate 1'
@@ -152,7 +189,7 @@ class VideoTracker:
                           '\tX Coordinate 7'
                           '\tY Coordinate 7'
                           '\tX Coordinate 8'
-                          '\tY Coordinate 8')
+                          '\tY Coordinate 8\n')
 
             for i in range(len(x_centers)):
                 row_data = str(i) + '\t'
@@ -163,6 +200,14 @@ class VideoTracker:
         return x_centers, y_centers
 
     def process_tracker(self, cap, multi_tracker, colors, video_out):
+        """
+        Given captured video & tracker object, track objects and output video + coordinates
+        :param cap: OpenCV Cap object representing video stream
+        :param multi_tracker: OpenCV tracker object
+        :param colors: Colors of each bounding box
+        :param video_out: Output video path
+        :return: 
+        """
         # Initialize Coordinate List
         x_centers = []
         y_centers = []
