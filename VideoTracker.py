@@ -36,7 +36,7 @@ class VideoTracker:
         video_out.open(self.output_path, output_format, self.fps, (self.vid_width, self.vid_height), True)
 
         # run tracker and save video
-        self.process_tracker(self.cap, multi_tracker, colors, video_out)
+        print(self.process_tracker(self.cap, multi_tracker, colors, video_out))
 
     def init_multitracker(self, bboxes, tracker_type, frame):
         # Create MultiTracker object
@@ -74,7 +74,7 @@ class VideoTracker:
 
         return tracker
 
-    def manual_calibration(self):
+    def read_first_frame(self):
         # Read first frame
         success, frame = self.cap.read()
         frame = cv2.resize(frame, (1920, 1080))
@@ -85,6 +85,11 @@ class VideoTracker:
         if not success:
             print('Failed to read video')
             raise Exception("Failed to read video")
+
+        return frame
+
+    def manual_calibration(self):
+        frame = self.read_first_frame()
 
         # Select boxes
         bboxes = []
@@ -109,14 +114,68 @@ class VideoTracker:
         return bboxes, frame, colors
 
     def automatic_calibration(self):
-        pass
-        return None, None, None
+        frame = self.read_first_frame()
+
+        # Select boxes
+        bboxes = []
+        colors = []
+
+        box1 = (571, 230, 105, 140)
+        color1 = randint(0, 255), randint(0, 255), randint(0, 255)
+
+        box2 = (271, 130, 105, 140)
+        color2 = randint(0, 255), randint(0, 255), randint(0, 255)
+
+        bboxes.append(box1)
+        colors.append(color1)
+
+        bboxes.append(box2)
+        colors.append(color2)
+        return bboxes, frame, colors
+
+    def generate_output_file(self, x_centers, y_centers):
+        with open('BrailleOutput.txt', 'w+') as outfile:
+            outfile.write('Frame\tX Coordinate 1'
+                          '\tY Coordinate 1'
+                          '\tX Coordinate 2'
+                          '\tY Coordinate 2'
+                          '\tX Coordinate 3'
+                          '\tY Coordinate 3'
+                          '\tX Coordinate 4'
+                          '\tY Coordinate 4'
+                          '\tX Coordinate 5'
+                          '\tY Coordinate 5'
+                          '\tX Coordinate 6'
+                          '\tY Coordinate 6'
+                          '\tX Coordinate 7'
+                          '\tY Coordinate 7'
+                          '\tX Coordinate 8'
+                          '\tY Coordinate 8')
+
+            for i in range(len(x_centers)):
+                row_data = str(i) + '\t'
+                for box in range(8):
+                    row_data += str(x_centers[i][box]) + '\t' + str(y_centers[i][box]) + '\t'
+
+                outfile.write(row_data + '\n')
+        return x_centers, y_centers
 
     def process_tracker(self, cap, multi_tracker, colors, video_out):
+        # Initialize Coordinate List
+        x_centers = []
+        y_centers = []
+
+        #is_recording = False
+        is_recording = True
+
+        frame_num = 0
+
         # Process video and track objects
         while cap.isOpened():
-            success, frame = cap.read()
+            x_centers_per_frame = [[]] * 8
+            y_centers_per_frame = [[]] * 8
 
+            success, frame = cap.read()
             try:
                 if not success:
                     break
@@ -133,6 +192,17 @@ class VideoTracker:
                 p2 = (int(newbox[0] + newbox[2]), int(newbox[1] + newbox[3]))
                 cv2.rectangle(frame, p1, p2, colors[i], 2, 1)
 
+                x_center_pixel = boxes[i][0] + boxes[i][2] / 2
+                y_center_pixel = boxes[i][1] + boxes[i][3] / 2
+                x_centers_per_frame[i] = x_center_pixel
+                y_centers_per_frame[i] = y_center_pixel
+
+            # add coordinates from this frame to overall coordinate list
+            if is_recording:
+                x_centers.append(x_centers_per_frame)
+                y_centers.append(y_centers_per_frame)
+                frame_num += 1
+
             # show frame
             cv2.imshow('MultiTracker', frame)
             video_out.write(frame)
@@ -140,7 +210,10 @@ class VideoTracker:
             # quit on ESC button
             if cv2.waitKey(1) & 0xFF == 27:  # Esc pressed
                 break
-        return True
+
+        x_centers, y_centers = self.generate_output_file(x_centers, y_centers)
+
+        return x_centers, y_centers
 
 
 if __name__ == '__main__':
