@@ -21,8 +21,10 @@ class VideoTracker:
 
         # Calibration of boxes
         if auto_calibrate:
+            # use predefined bounding boxes
             bboxes, frame, colors = self.automatic_calibration()
         else:
+            # manually draw bounding boxes
             bboxes, frame, colors = self.manual_calibration()
 
         # initialize multitracker object based on bounding boxes and selected tracker type
@@ -164,11 +166,12 @@ class VideoTracker:
         # Initialize Coordinate List
         x_centers = []
         y_centers = []
+        frame_num = 0
 
         #is_recording = False
         is_recording = True
 
-        frame_num = 0
+
 
         # Process video and track objects
         while cap.isOpened():
