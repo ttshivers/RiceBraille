@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a31789c-8865-4d64-bbeb-dac40e4b2170" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/images/calibration_marker_image1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/calibration_marker_image1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/calibration_test_page1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/calibration_test_page1_marked.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/calibration_test_page2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/calibration_test_page2_marked.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/calibration_test_page3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/calibration_test_page3_marked.jpg" beforeDir="false" />
+    <list default="true" id="40ab912c-cd52-4c07-85ca-1c9474f53305" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/images/Scanned_Collin.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/Scanned_Collin_marked.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/Calibration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibrationTestImage4.JPG" beforeDir="false" afterPath="$PROJECT_DIR$/images/calibrationTestImage4.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scan.py" beforeDir="false" afterPath="$PROJECT_DIR$/scan.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,6 +38,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\colli\PycharmProjects\RiceBraille\images" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -53,7 +55,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.scan">
+  <component name="RunManager" selected="Python.Calibration">
     <configuration name="Calibration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SeniorDesign" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -96,6 +98,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="scan (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SeniorDesign" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scan.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="scan" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SeniorDesign" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -119,8 +142,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.scan" />
         <item itemvalue="Python.Calibration" />
+        <item itemvalue="Python.scan (1)" />
+        <item itemvalue="Python.scan" />
         <item itemvalue="Python.SeniorDesign" />
       </list>
     </recent_temporary>
@@ -130,7 +154,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0a31789c-8865-4d64-bbeb-dac40e4b2170" name="Default Changelist" comment="" />
+      <changelist id="40ab912c-cd52-4c07-85ca-1c9474f53305" name="Default Changelist" comment="" />
       <created>1569789403371</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

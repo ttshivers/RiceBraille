@@ -15,7 +15,7 @@ ap.add_argument("-i", "--image", required = True,
 	help = "Path to the image to be scanned")
 args = vars(ap.parse_args())
 '''
-image_file = "images/bigAtAngle.jpg"
+image_file = "images/CalibrationTestImage4.jpg"
 # load the image and compute the ratio of the old height
 # to the new height, clone it, and resize it
 image = cv2.imread(image_file)
@@ -73,7 +73,7 @@ warped = four_point_transform(orig, screenCnt.reshape(4, 2) * ratio)
 
 # show the original and scanned images
 print("STEP 3: Apply perspective transform")
-cv2.imwrite("Scanned.jpg", imutils.resize(warped, height = 650))
+cv2.imwrite("Scanned_Collin.jpg", imutils.resize(warped, height = 650))
 cv2.imshow("Original", imutils.resize(orig, height = 650))
 cv2.imshow("Scanned", imutils.resize(warped, height = 650))
 cv2.waitKey(0)
