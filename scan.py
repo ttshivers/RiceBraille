@@ -15,7 +15,7 @@ ap.add_argument("-i", "--image", required = True,
 	help = "Path to the image to be scanned")
 args = vars(ap.parse_args())
 '''
-image_file = "images/angledMonitor.jpg"
+image_file = "images/coordinateTransformDots1.jpg"
 # load the image and compute the ratio of the old height
 # to the new height, clone it, and resize it
 image = cv2.imread(image_file)
@@ -78,6 +78,7 @@ cv2.imshow("Scanned", imutils.resize(warped, height=500))
 width = 425
 height = 550
 dim = (width, height)
-cv2.imwrite("Scanned.jpg", cv2.resize(warped, dim))
+# cv2.imwrite("coordinateTransformDots1Perspective.jpg", cv2.resize(warped, dim))
+cv2.imwrite("coordinateTransformDots1Perspective.jpg", imutils.resize(warped, height=500))
 cv2.imshow("Tru Scanned", cv2.resize(warped, dim))
 cv2.waitKey(0)
