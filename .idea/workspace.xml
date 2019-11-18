@@ -3,14 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="0a31789c-8865-4d64-bbeb-dac40e4b2170" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calibration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SeniorDesign.py" beforeDir="false" afterPath="$PROJECT_DIR$/ColorMasking.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_marker_image1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/calibration_marker_image1.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page1.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page1_marked.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page2.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page2_marked.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page3.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page3_marked.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scan.py" beforeDir="false" afterPath="$PROJECT_DIR$/scan.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +55,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Calibration">
+  <component name="RunManager" selected="Python.scan (1)">
     <configuration name="Calibration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SeniorDesign" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,7 +89,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SeniorDesign.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\aryan\OneDrive\Desktop\Classes\Senior Design\RiceBraille\ColorMasking.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -140,8 +142,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Calibration" />
         <item itemvalue="Python.scan (1)" />
+        <item itemvalue="Python.Calibration" />
         <item itemvalue="Python.scan" />
         <item itemvalue="Python.SeniorDesign" />
       </list>
@@ -179,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573444721680</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="workspace changes">
+      <created>1574105071818</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1574105071818</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,9 +205,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="workspace changes" />
     <MESSAGE value="added scanner" />
     <MESSAGE value="added resizing to change proportions" />
-    <option name="LAST_COMMIT_MESSAGE" value="added resizing to change proportions" />
+    <MESSAGE value="workspace changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace changes" />
   </component>
 </project>
