@@ -7,17 +7,16 @@ from skimage.filters import threshold_local
 import ar_markers as ar
 import cv2
 import imutils
+import numpy as np
 
 
 def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImage.jpg"):
-    # construct the argument parser and parse the arguments
-    '''
-    ap = argparse.ArgumentParser()
-    ap.add_argument("-i", "--image", required = True,
-        help = "Path to the image to be scanned")
-    args = vars(ap.parse_args())
-    '''
-    # image_file = "images/arFour.jpg"
+    """
+    :param image_file: name of image to read from
+    :param paper_dims: dimensions of paper (in pixels) to scale scanned image to
+    :param output_image: name of file to write new image to
+    :return: returns transformation matrix
+    """
     # load the image and compute the ratio of the old height
     # to the new height, clone it, and resize it
     image = cv2.imread(image_file)
@@ -65,7 +64,7 @@ def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImag
 
     # apply the four point transform to obtain a top-down
     # view of the original image
-    warped = four_point_transform(orig, screenCnt.reshape(4, 2) * ratio)
+    M, warped = four_point_transform(orig, screenCnt.reshape(4, 2) * ratio)
 
     # convert the warped image to grayscale, then threshold it
     # to give it that 'black and white' paper effect
@@ -84,8 +83,14 @@ def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImag
         cv2.imshow("Scanned", cv2.resize(warped, paper_dims))
     cv2.waitKey(0)
 
+    return M
+
 
 def find_markers(image_file, output_image="markers.jpg"):
+    """
+    :param image_file: filename to read from
+    :param output_image: name of file to write new images to
+    """
     test_image = cv2.imread(image_file)
 
     markers = ar.detect_markers(test_image)
@@ -99,8 +104,26 @@ def find_markers(image_file, output_image="markers.jpg"):
 
 
 def transform_and_markers(image_file, paper_dims=(425, 550), scanned_output="scanned.jpg", final_output="scannedMarkers.jpg"):
+    """
+    :param image_file: original image file to read from
+    :param paper_dims: paper dims to scale to (as used in transform image)
+    :param scanned_output: output file for image that is scanned but does not have ar markers detected yet
+    :param final_output: file name for image with ar markers detect
+    """
     transform_image(image_file, paper_dims, scanned_output)
     find_markers(scanned_output, final_output)
 
+def transform_point(point: [int, int], M):
+    """
+    :param point: point in original plane
+    :param M: transformation matrix
+    :return: prints point that point is transformed to in new plane
+    """
+    a = np.array([point], dtype='float32')
+    a = np.array([a])
+    print(cv2.perspectiveTransform(a, M))
 
-transform_and_markers("images/arFour.jpg")
+
+#transform_and_markers("images/arFour.jpg")
+my_mat = transform_image("images/arFour.jpg")
+transform_point([0, 0], my_mat)

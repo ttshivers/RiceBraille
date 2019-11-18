@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0a31789c-8865-4d64-bbeb-dac40e4b2170" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calibration.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SeniorDesign.py" beforeDir="false" afterPath="$PROJECT_DIR$/ColorMasking.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_marker_image1.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page1.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page1_marked.jpg" beforeDir="false" />
@@ -12,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page2_marked.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page3.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page3_marked.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyimagesearch/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyimagesearch/transform.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scan.py" beforeDir="false" afterPath="$PROJECT_DIR$/scan.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -188,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574105071818</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="made it easier to run tests by running both scanning and ar marker checking at once">
+      <created>1574108036157</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1574108036157</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,6 +214,7 @@
     <MESSAGE value="added scanner" />
     <MESSAGE value="added resizing to change proportions" />
     <MESSAGE value="workspace changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace changes" />
+    <MESSAGE value="made it easier to run tests by running both scanning and ar marker checking at once" />
+    <option name="LAST_COMMIT_MESSAGE" value="made it easier to run tests by running both scanning and ar marker checking at once" />
   </component>
 </project>
