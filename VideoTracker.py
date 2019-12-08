@@ -6,13 +6,14 @@ class VideoTracker:
     """Video Tracker Class"""
     trackerTypes = ['BOOSTING', 'MIL', 'KCF', 'TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT']
 
-    def __init__(self, video_path, tracker_type="CSRT", auto_calibrate=False, output_path='./test_output/output.mp4'):
+    def __init__(self, video_path, tracker_type="CSRT", auto_calibrate=False, output_path='./test_output/output.mp4', show_frame=False):
         """
         init video tracker
         :param video_path: Path of input video
         :param tracker_type: type of OpenCV tracker to use, CSRT seems to work the best so far and is default
         :param auto_calibrate: If True, will use pre-defined bounding boxes instead of manual
         :param output_path: Path of output video, will create if does not exist
+        :param show_frame: If true, tracker displays the frame at each iteration
         """
         # Create a video capture object to read videos
         self.cap = cv2.VideoCapture(video_path)
@@ -45,7 +46,7 @@ class VideoTracker:
         video_out.open(self.output_path, output_format, self.fps, (self.vid_width, self.vid_height), True)
 
         # run tracker and save video
-        print(self.process_tracker(self.cap, multi_tracker, colors, video_out))
+        print(self.process_tracker(self.cap, multi_tracker, colors, video_out, show_frame))
 
     def init_multitracker(self, bboxes, tracker_type, frame):
         """
@@ -147,23 +148,25 @@ class VideoTracker:
         Draw bounding boxes from predefined coordinates
         :return: bounding boxes, first frame, color of each box
         """
+        defined_calibration_pts = [(371, 887, 77, 68),
+                                   (571, 999, 99, 46),
+                                   (692, 991, 111, 56),
+                                   (801, 983, 95, 64),
+                                   (998, 991, 93, 56),
+                                   (1100, 981, 98, 66),
+                                   (1248, 983, 101, 63),
+                                   (1359, 881, 94, 60)]
         frame = self.read_first_frame()
 
         # Select boxes
         bboxes = []
         colors = []
 
-        box1 = (571, 230, 105, 140)
-        color1 = randint(0, 255), randint(0, 255), randint(0, 255)
+        for this_box in defined_calibration_pts:
+            bboxes.append(this_box)
+            this_color = randint(0, 255), randint(0, 255), randint(0, 255)
+            colors.append(this_color)
 
-        box2 = (271, 130, 105, 140)
-        color2 = randint(0, 255), randint(0, 255), randint(0, 255)
-
-        bboxes.append(box1)
-        colors.append(color1)
-
-        bboxes.append(box2)
-        colors.append(color2)
         return bboxes, frame, colors
 
     def generate_output_file(self, x_centers, y_centers):
@@ -201,13 +204,14 @@ class VideoTracker:
                     outfile.write(row_data + '\n')
         return x_centers, y_centers
 
-    def process_tracker(self, cap, multi_tracker, colors, video_out):
+    def process_tracker(self, cap, multi_tracker, colors, video_out, show_frame=False):
         """
         Given captured video & tracker object, track objects and output video + coordinates
         :param cap: OpenCV Cap object representing video stream
         :param multi_tracker: OpenCV tracker object
         :param colors: Colors of each bounding box
         :param video_out: Output video path
+        :param show_frame: If True, program updates the frame during processing
         :return:
         """
         # Initialize Coordinate List
@@ -252,7 +256,8 @@ class VideoTracker:
                 frame_num += 1
 
             # show frame
-            cv2.imshow('MultiTracker', frame)
+            if show_frame:
+                cv2.imshow('MultiTracker', frame)
             video_out.write(frame)
 
             # quit on ESC button
@@ -264,7 +269,7 @@ class VideoTracker:
 
 
 if __name__ == '__main__':
-    tracker = VideoTracker("./test_images/IMG_1285.MOV")
+    tracker = VideoTracker("./test_images/dec_8_trials/dec_8_1.MOV", auto_calibrate=True, show_frame=False)
 
 
 
