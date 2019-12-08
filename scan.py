@@ -172,10 +172,22 @@ def transform_point(point: [int, int], cur_dim:(int, int), desired_dim: (int, in
     print((x,y))
 
 
+def get_transform_video(video_path):
+    cap = cv2.VideoCapture(video_path)
+    ret, frame = cap.read()
+    cv2.imshow("frame", frame)
+    cv2.imwrite("video_frame.jpg", frame)
+    cv2.waitKey(0)
+    m, im_dims = transform_image("video_frame.jpg")
+    return m, im_dims
+
 #transform_and_markers("images/arFour.jpg")
+'''
 dig_markers = find_markers("images/dig_ar_sample.jpg")
 transform_and_markers("images/ar_sample.jpg", (816, 1056))
 unaltered_markers = find_markers("images/ar_sample.jpg")
 my_mat, dims = transform_image("images/ar_sample.jpg", (816, 1056))
 print(transform_point(unaltered_markers[0].center, dims, (816, 1056), my_mat))
+'''
+get_transform_video("images/test_vid.mp4")
 #transform_point([0, 0], my_mat)

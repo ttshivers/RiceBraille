@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a31789c-8865-4d64-bbeb-dac40e4b2170" name="Default Changelist" comment="">
+    <list default="true" id="0a31789c-8865-4d64-bbeb-dac40e4b2170" name="Default Changelist" comment="added comments and cleaned code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/CalibrationTestImage4_marked.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Scanned_Collin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Scanned_Collin_marked.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/blurNight.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/blurNightTwo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibrationTestImage4.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_marker_image1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibration_marker_image2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibration_marker_image3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibration_test_fullPage_marked.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page1.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page1_marked.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page2.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page2_marked.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page3.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/calibration_test_page3_marked.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyimagesearch/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyimagesearch/transform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/fourCornersCalibrationTest.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/fourCornersCalibrationTest_marked.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/lightOutside.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/manySquaresCalibrationTest.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/manySquaresCalibrationTest_marked.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/photoOfPaperWithMarkers.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/weirdShadows.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scan.py" beforeDir="false" afterPath="$PROJECT_DIR$/scan.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -194,7 +209,21 @@
       <option name="project" value="LOCAL" />
       <updated>1574108036157</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added comments and cleaned code">
+      <created>1574108905240</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1574108905240</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added comments and cleaned code">
+      <created>1575832655842</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1575832655842</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -215,6 +244,7 @@
     <MESSAGE value="added resizing to change proportions" />
     <MESSAGE value="workspace changes" />
     <MESSAGE value="made it easier to run tests by running both scanning and ar marker checking at once" />
-    <option name="LAST_COMMIT_MESSAGE" value="made it easier to run tests by running both scanning and ar marker checking at once" />
+    <MESSAGE value="added comments and cleaned code" />
+    <option name="LAST_COMMIT_MESSAGE" value="added comments and cleaned code" />
   </component>
 </project>
