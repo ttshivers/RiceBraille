@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+test_output/output.mp4
+BrailleOutput.txt
+test_output/output.mp4
+test_output
