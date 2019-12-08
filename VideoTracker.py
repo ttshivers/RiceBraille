@@ -219,9 +219,6 @@ class VideoTracker:
         y_centers = []
         frame_num = 0
 
-        # is_recording = False
-        is_recording = True
-
         # Process video and track objects
         while cap.isOpened():
             x_centers_per_frame = [[]] * 8
@@ -250,10 +247,9 @@ class VideoTracker:
                 y_centers_per_frame[i] = y_center_pixel
 
             # add coordinates from this frame to overall coordinate list
-            if is_recording:
-                x_centers.append(x_centers_per_frame)
-                y_centers.append(y_centers_per_frame)
-                frame_num += 1
+            x_centers.append(x_centers_per_frame)
+            y_centers.append(y_centers_per_frame)
+            frame_num += 1
 
             # show frame
             if show_frame:
