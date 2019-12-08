@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="40ab912c-cd52-4c07-85ca-1c9474f53305" name="Default Changelist" comment="">
+    <list default="true" id="0a31789c-8865-4d64-bbeb-dac40e4b2170" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/Calibration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibration_marker_image1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibration_test_page1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibration_test_page1_marked.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibration_test_page2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibration_test_page2_marked.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibration_test_page3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calibration_test_page3_marked.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyimagesearch/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyimagesearch/transform.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scan.py" beforeDir="false" afterPath="$PROJECT_DIR$/scan.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,11 +42,6 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\colli\PycharmProjects\RiceBraille\images" />
-    </key>
-  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -52,7 +54,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Calibration">
+  <component name="RunManager" selected="Python.scan (1)">
     <configuration name="Calibration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SeniorDesign" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -74,27 +76,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Coordinates" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="SeniorDesign" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Coordinates.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="SeniorDesign" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SeniorDesign" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,7 +88,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SeniorDesign.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\aryan\OneDrive\Desktop\Classes\Senior Design\RiceBraille\ColorMasking.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,9 +141,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Calibration" />
         <item itemvalue="Python.scan (1)" />
-        <item itemvalue="Python.Coordinates" />
+        <item itemvalue="Python.Calibration" />
         <item itemvalue="Python.scan" />
         <item itemvalue="Python.SeniorDesign" />
       </list>
@@ -173,7 +153,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="40ab912c-cd52-4c07-85ca-1c9474f53305" name="Default Changelist" comment="" />
+      <changelist id="0a31789c-8865-4d64-bbeb-dac40e4b2170" name="Default Changelist" comment="" />
       <created>1569789403371</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -186,28 +166,35 @@
       <option name="project" value="LOCAL" />
       <updated>1572896615143</updated>
     </task>
-    <task id="LOCAL-00002" summary="Working on getting coordinates">
-      <created>1573500556735</created>
+    <task id="LOCAL-00002" summary="added scanner">
+      <created>1572898573252</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1573500556735</updated>
+      <updated>1572898573252</updated>
     </task>
-    <task id="LOCAL-00003" summary="Working on getting coordinates">
-      <created>1574104264540</created>
+    <task id="LOCAL-00003" summary="added resizing to change proportions">
+      <created>1573444721679</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1574104264540</updated>
+      <updated>1573444721680</updated>
     </task>
-    <task id="LOCAL-00004" summary="Working on getting coordinates">
-      <created>1574104675743</created>
+    <task id="LOCAL-00004" summary="workspace changes">
+      <created>1574105071818</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1574104675743</updated>
+      <updated>1574105071818</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="made it easier to run tests by running both scanning and ar marker checking at once">
+      <created>1574108036157</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1574108036157</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -224,8 +211,10 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="added scanner" />
+    <MESSAGE value="added resizing to change proportions" />
     <MESSAGE value="workspace changes" />
-    <MESSAGE value="Working on getting coordinates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on getting coordinates" />
+    <MESSAGE value="made it easier to run tests by running both scanning and ar marker checking at once" />
+    <option name="LAST_COMMIT_MESSAGE" value="made it easier to run tests by running both scanning and ar marker checking at once" />
   </component>
 </project>

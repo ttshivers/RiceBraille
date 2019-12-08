@@ -7,17 +7,17 @@ from skimage.filters import threshold_local
 import ar_markers as ar
 import cv2
 import imutils
+import numpy as np
+
 import pyzbar.pyzbar as pyzbar
 
-def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImage.jpg"):
-    # construct the argument parser and parse the arguments
-    '''
-    ap = argparse.ArgumentParser()
-    ap.add_argument("-i", "--image", required = True,
-        help = "Path to the image to be scanned")
-    args = vars(ap.parse_args())
-    '''
-    # image_file = "images/arFour.jpg"
+def transform_image(image_file, paper_dims=(825, 1100), output_image="scannedImage.jpg"):
+    """
+    :param image_file: name of image to read from
+    :param paper_dims: dimensions of paper (in pixels) to scale scanned image to
+    :param output_image: name of file to write new image to
+    :return: returns transformation matrix
+    """
     # load the image and compute the ratio of the old height
     # to the new height, clone it, and resize it
     image = cv2.imread(image_file)
@@ -58,7 +58,6 @@ def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImag
 
     # show the contour (outline) of the piece of paper
     print("STEP 2: Find contours of paper")
-    print(approx)
     cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
     cv2.imshow("Outline", image)
     cv2.waitKey(0)
@@ -66,7 +65,7 @@ def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImag
 
     # apply the four point transform to obtain a top-down
     # view of the original image
-    warped = four_point_transform(orig, screenCnt.reshape(4, 2) * ratio)
+    M, warped, dims = four_point_transform(orig, screenCnt.reshape(4, 2) * ratio)
 
     # convert the warped image to grayscale, then threshold it
     # to give it that 'black and white' paper effect
@@ -76,17 +75,19 @@ def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImag
 
     # show the original and scanned images
     print("STEP 3: Apply perspective transform")
-    if paper_dims == None:
-        cv2.imwrite(output_image, imutils.resize(warped, height=650))
-        cv2.imshow("Original", imutils.resize(orig, height=650))
-        cv2.imshow("Scanned", imutils.resize(warped, height=650))
-    else:
-        cv2.imwrite(output_image, cv2.resize(warped, paper_dims))
-        cv2.imshow("Scanned", cv2.resize(warped, paper_dims))
+
+    cv2.imwrite(output_image, cv2.resize(warped, paper_dims))
+    cv2.imshow("Scanned", cv2.resize(warped, paper_dims))
     cv2.waitKey(0)
+
+    return M, dims
 
 
 def find_markers(image_file, output_image="markers.jpg"):
+    """
+    :param image_file: filename to read from
+    :param output_image: name of file to write new images to
+    """
     test_image = cv2.imread(image_file)
 
     markers = ar.detect_markers(test_image)
@@ -97,7 +98,18 @@ def find_markers(image_file, output_image="markers.jpg"):
     cv2.imshow("Markers", test_image)
     cv2.waitKey(0)
     cv2.imwrite(output_image, test_image)
+    return markers
 
+
+def transform_and_markers(image_file, paper_dims=(825, 1100), scanned_output="scanned.jpg", final_output="scannedMarkers.jpg"):
+    """
+    :param image_file: original image file to read from
+    :param paper_dims: paper dims to scale to (as used in transform image)
+    :param scanned_output: output file for image that is scanned but does not have ar markers detected yet
+    :param final_output: file name for image with ar markers detect
+    """
+    transform_image(image_file, paper_dims, scanned_output)
+    find_markers(scanned_output, final_output)
 
 def decode(im):
     # Find barcodes and QR codes
@@ -142,13 +154,28 @@ def find_qr_code(image_file, output_image='qr_code.jpg'):
     cv2.imwrite(output_image, im2)
 
 
-def transform_and_markers(image_file, paper_dims=(425, 550), scanned_output="scanned.jpg", final_output="scannedMarkers.jpg"):
-    transform_image(image_file, paper_dims, scanned_output)
-    find_markers(scanned_output, final_output)
-
 def transform_and_qr(image_file, paper_dims=(425, 550), scanned_output="scanned.jpg", final_output="scannedQR.jpg"):
     transform_image(image_file, paper_dims, scanned_output)
     find_qr_code(scanned_output, final_output)
 
-# transform_and_markers("images/arFour.jpg")
-transform_and_qr("images/qr_code_fullpage_test9.jpg")
+def transform_point(point: [int, int], cur_dim:(int, int), desired_dim: (int, int), m):
+    """
+    :param point: point in original plane
+    :param M: transformation matrix
+    :return: prints point that point is transformed to in new plane
+    """
+    a = np.array([point], dtype='float32')
+    a = np.array([a])
+    cur = cv2.perspectiveTransform(a, m)
+    x = cur.flatten()[0]*desired_dim[0]/cur_dim[0]
+    y = cur.flatten()[1]*desired_dim[1]/cur_dim[1]
+    print((x,y))
+
+
+#transform_and_markers("images/arFour.jpg")
+dig_markers = find_markers("images/dig_ar_sample.jpg")
+transform_and_markers("images/ar_sample.jpg", (816, 1056))
+unaltered_markers = find_markers("images/ar_sample.jpg")
+my_mat, dims = transform_image("images/ar_sample.jpg", (816, 1056))
+print(transform_point(unaltered_markers[0].center, dims, (816, 1056), my_mat))
+#transform_point([0, 0], my_mat)
