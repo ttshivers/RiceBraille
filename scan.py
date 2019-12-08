@@ -187,8 +187,8 @@ def transform_point(point: (int, int), transform_metadata: TransformMetadata):
 def get_transform_video(video_path, desired_dimensions=(850, 1100)):
     cap = cv2.VideoCapture(video_path)
     ret, frame = cap.read()
-    cv2.imshow("frame", frame)
-    cv2.waitKey(0)
+    #cv2.imshow("frame", frame)
+    #cv2.waitKey(0)
     m, im_dims = transform_image(frame)
     return TransformMetadata(m, im_dims, desired_dimensions)
 
