@@ -10,7 +10,7 @@ import imutils
 import numpy as np
 
 
-def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImage.jpg"):
+def transform_image(image_file, paper_dims=(825, 1100), output_image="scannedImage.jpg"):
     """
     :param image_file: name of image to read from
     :param paper_dims: dimensions of paper (in pixels) to scale scanned image to
@@ -64,7 +64,7 @@ def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImag
 
     # apply the four point transform to obtain a top-down
     # view of the original image
-    M, warped = four_point_transform(orig, screenCnt.reshape(4, 2) * ratio)
+    M, warped, dims = four_point_transform(orig, screenCnt.reshape(4, 2) * ratio)
 
     # convert the warped image to grayscale, then threshold it
     # to give it that 'black and white' paper effect
@@ -74,16 +74,12 @@ def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImag
 
     # show the original and scanned images
     print("STEP 3: Apply perspective transform")
-    if paper_dims == None:
-        cv2.imwrite(output_image, imutils.resize(warped, height=650))
-        cv2.imshow("Original", imutils.resize(orig, height=650))
-        cv2.imshow("Scanned", imutils.resize(warped, height=650))
-    else:
-        cv2.imwrite(output_image, cv2.resize(warped, paper_dims))
-        cv2.imshow("Scanned", cv2.resize(warped, paper_dims))
+
+    cv2.imwrite(output_image, cv2.resize(warped, paper_dims))
+    cv2.imshow("Scanned", cv2.resize(warped, paper_dims))
     cv2.waitKey(0)
 
-    return M
+    return M, dims
 
 
 def find_markers(image_file, output_image="markers.jpg"):
@@ -101,9 +97,10 @@ def find_markers(image_file, output_image="markers.jpg"):
     cv2.imshow("Markers", test_image)
     cv2.waitKey(0)
     cv2.imwrite(output_image, test_image)
+    return markers
 
 
-def transform_and_markers(image_file, paper_dims=(425, 550), scanned_output="scanned.jpg", final_output="scannedMarkers.jpg"):
+def transform_and_markers(image_file, paper_dims=(825, 1100), scanned_output="scanned.jpg", final_output="scannedMarkers.jpg"):
     """
     :param image_file: original image file to read from
     :param paper_dims: paper dims to scale to (as used in transform image)
@@ -113,7 +110,8 @@ def transform_and_markers(image_file, paper_dims=(425, 550), scanned_output="sca
     transform_image(image_file, paper_dims, scanned_output)
     find_markers(scanned_output, final_output)
 
-def transform_point(point: [int, int], M):
+
+def transform_point(point: [int, int], cur_dim:(int, int), desired_dim: (int, int), m):
     """
     :param point: point in original plane
     :param M: transformation matrix
@@ -121,9 +119,16 @@ def transform_point(point: [int, int], M):
     """
     a = np.array([point], dtype='float32')
     a = np.array([a])
-    print(cv2.perspectiveTransform(a, M))
+    cur = cv2.perspectiveTransform(a, m)
+    x = cur.flatten()[0]*desired_dim[0]/cur_dim[0]
+    y = cur.flatten()[1]*desired_dim[1]/cur_dim[1]
+    print((x,y))
 
 
 #transform_and_markers("images/arFour.jpg")
-my_mat = transform_image("images/arFour.jpg")
-transform_point([0, 0], my_mat)
+dig_markers = find_markers("images/dig_ar_sample.jpg")
+transform_and_markers("images/ar_sample.jpg", (816, 1056))
+unaltered_markers = find_markers("images/ar_sample.jpg")
+my_mat, dims = transform_image("images/ar_sample.jpg", (816, 1056))
+print(transform_point(unaltered_markers[0].center, dims, (816, 1056), my_mat))
+#transform_point([0, 0], my_mat)
