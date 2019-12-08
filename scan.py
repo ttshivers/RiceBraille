@@ -2,6 +2,9 @@
 # python scan.py --image images/page.jpg
 
 # import the necessary packages
+from dataclasses import dataclass
+from typing import Any
+
 from pyimagesearch.transform import four_point_transform
 from skimage.filters import threshold_local
 import ar_markers as ar
@@ -11,16 +14,16 @@ import numpy as np
 
 import pyzbar.pyzbar as pyzbar
 
-def transform_image(image_file, paper_dims=(825, 1100), output_image="scannedImage.jpg"):
+
+def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jpg"):
     """
-    :param image_file: name of image to read from
+    :param image: image frame
     :param paper_dims: dimensions of paper (in pixels) to scale scanned image to
     :param output_image: name of file to write new image to
     :return: returns transformation matrix
     """
     # load the image and compute the ratio of the old height
     # to the new height, clone it, and resize it
-    image = cv2.imread(image_file)
     ratio = image.shape[0] / 500.0
     orig = image.copy()
     image = imutils.resize(image, height=500)
@@ -101,7 +104,8 @@ def find_markers(image_file, output_image="markers.jpg"):
     return markers
 
 
-def transform_and_markers(image_file, paper_dims=(825, 1100), scanned_output="scanned.jpg", final_output="scannedMarkers.jpg"):
+def transform_and_markers(image_file, paper_dims=(825, 1100), scanned_output="scanned.jpg",
+                          final_output="scannedMarkers.jpg"):
     """
     :param image_file: original image file to read from
     :param paper_dims: paper dims to scale to (as used in transform image)
@@ -110,6 +114,7 @@ def transform_and_markers(image_file, paper_dims=(825, 1100), scanned_output="sc
     """
     transform_image(image_file, paper_dims, scanned_output)
     find_markers(scanned_output, final_output)
+
 
 def decode(im):
     # Find barcodes and QR codes
@@ -158,28 +163,35 @@ def transform_and_qr(image_file, paper_dims=(425, 550), scanned_output="scanned.
     transform_image(image_file, paper_dims, scanned_output)
     find_qr_code(scanned_output, final_output)
 
-def transform_point(point: [int, int], cur_dim:(int, int), desired_dim: (int, int), m):
+
+@dataclass(frozen=True)
+class TransformMetadata:
+    transformation_matrix: Any
+    im_dims: (int, int)
+    desired_dimensions: (int, int)
+
+
+def transform_point(point: (int, int), transform_metadata: TransformMetadata):
     """
     :param point: point in original plane
     :param M: transformation matrix
     :return: prints point that point is transformed to in new plane
     """
-    a = np.array([point], dtype='float32')
-    a = np.array([a])
-    cur = cv2.perspectiveTransform(a, m)
-    x = cur.flatten()[0]*desired_dim[0]/cur_dim[0]
-    y = cur.flatten()[1]*desired_dim[1]/cur_dim[1]
-    print((x,y))
+    a = np.array(np.array([point], dtype='float32'))
+    cur = cv2.perspectiveTransform(a, transform_metadata.transformation_matrix)
+    x = cur.flatten()[0] * transform_metadata.desired_dim[0] / transform_metadata.im_dims[0]
+    y = cur.flatten()[1] * transform_metadata.desired_dim[1] / transform_metadata.im_dims[1]
+    return x, y
 
 
-def get_transform_video(video_path):
+def get_transform_video(video_path, desired_dimensions=(850, 1100)):
     cap = cv2.VideoCapture(video_path)
     ret, frame = cap.read()
     cv2.imshow("frame", frame)
-    cv2.imwrite("video_frame.jpg", frame)
     cv2.waitKey(0)
-    m, im_dims = transform_image("video_frame.jpg")
-    return m, im_dims
+    m, im_dims = transform_image(frame)
+    return TransformMetadata(m, im_dims, desired_dimensions)
+
 
 #transform_and_markers("images/arFour.jpg")
 '''
@@ -189,5 +201,5 @@ unaltered_markers = find_markers("images/ar_sample.jpg")
 my_mat, dims = transform_image("images/ar_sample.jpg", (816, 1056))
 print(transform_point(unaltered_markers[0].center, dims, (816, 1056), my_mat))
 '''
-get_transform_video("images/test_vid.mp4")
-#transform_point([0, 0], my_mat)
+get_transform_video("test_images/test.mp4")
+# transform_point([0, 0], my_mat)

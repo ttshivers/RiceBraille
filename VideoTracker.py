@@ -265,7 +265,7 @@ class VideoTracker:
 
 
 if __name__ == '__main__':
-    tracker = VideoTracker("./test_images/dec_8_trials/dec_8_1.MOV", auto_calibrate=True, show_frame=False)
+    tracker = VideoTracker("./test_images/dec_8_trials/dec_8_1.MOV", auto_calibrate=False, show_frame=True)
 
 
 
