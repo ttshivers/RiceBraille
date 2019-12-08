@@ -7,7 +7,7 @@ from skimage.filters import threshold_local
 import ar_markers as ar
 import cv2
 import imutils
-
+import pyzbar.pyzbar as pyzbar
 
 def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImage.jpg"):
     # construct the argument parser and parse the arguments
@@ -58,6 +58,7 @@ def transform_image(image_file, paper_dims=(425, 550), output_image="scannedImag
 
     # show the contour (outline) of the piece of paper
     print("STEP 2: Find contours of paper")
+    print(approx)
     cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
     cv2.imshow("Outline", image)
     cv2.waitKey(0)
@@ -98,9 +99,56 @@ def find_markers(image_file, output_image="markers.jpg"):
     cv2.imwrite(output_image, test_image)
 
 
+def decode(im):
+    # Find barcodes and QR codes
+    decodedObjects = pyzbar.decode(im)
+
+    # Print results
+    for obj in decodedObjects:
+        print('Type : ', obj.type)
+        print('Data : ', obj.data, '\n')
+
+    return decodedObjects
+
+
+# Display barcode and QR code location
+def highlightCodes(im, decodedObjects):
+    # Loop over all decoded objects
+    for decodedObject in decodedObjects:
+        points = decodedObject.polygon
+        print(points)
+        # If the points do not form a quad, find convex hull
+        if len(points) > 4:
+            hull = cv2.convexHull(np.array([point for point in points], dtype=np.float32))
+            hull = list(map(tuple, np.squeeze(hull)))
+        else:
+            hull = points
+
+        # Number of points in the convex hull
+        n = len(hull)
+
+        # Draw the convext hull
+        for j in range(0, n):
+            cv2.line(im, hull[j], hull[(j + 1) % n], (255, 0, 0), 3)
+
+    # Display results
+    return im
+
+
+def find_qr_code(image_file, output_image='qr_code.jpg'):
+    im = cv2.imread(image_file)
+    decodedObjects = decode(im)
+    im2 = highlightCodes(im, decodedObjects)
+    cv2.imwrite(output_image, im2)
+
+
 def transform_and_markers(image_file, paper_dims=(425, 550), scanned_output="scanned.jpg", final_output="scannedMarkers.jpg"):
     transform_image(image_file, paper_dims, scanned_output)
     find_markers(scanned_output, final_output)
 
+def transform_and_qr(image_file, paper_dims=(425, 550), scanned_output="scanned.jpg", final_output="scannedQR.jpg"):
+    transform_image(image_file, paper_dims, scanned_output)
+    find_qr_code(scanned_output, final_output)
 
-transform_and_markers("images/arFour.jpg")
+# transform_and_markers("images/arFour.jpg")
+transform_and_qr("images/qr_code_fullpage_test9.jpg")
