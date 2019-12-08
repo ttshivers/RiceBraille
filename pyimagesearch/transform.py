@@ -32,6 +32,7 @@ def four_point_transform(image, pts):
     # individually
     rect = order_points(pts)
     (tl, tr, br, bl) = rect
+    print(tl)
 
     # compute the width of the new image, which will be the
     # maximum distance between bottom-right and bottom-left

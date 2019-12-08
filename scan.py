@@ -26,7 +26,7 @@ def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jp
     # to the new height, clone it, and resize it
     ratio = image.shape[0] / 500.0
     orig = image.copy()
-    image = imutils.resize(image, height=500)
+    #image = imutils.resize(image, height=500)
 
     # convert the image to grayscale, blur it, and find edges
     # in the image
@@ -68,8 +68,8 @@ def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jp
 
     # apply the four point transform to obtain a top-down
     # view of the original image
-    M, warped, dims = four_point_transform(orig, screenCnt.reshape(4, 2) * ratio)
-
+    M, warped, dims = four_point_transform(orig, screenCnt.reshape(4, 2))
+    find_markers(warped)
     # convert the warped image to grayscale, then threshold it
     # to give it that 'black and white' paper effect
     # warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
@@ -86,21 +86,20 @@ def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jp
     return M, dims
 
 
-def find_markers(image_file, output_image="markers.jpg"):
+def find_markers(frame, output_image="markers.jpg"):
     """
     :param image_file: filename to read from
     :param output_image: name of file to write new images to
     """
-    test_image = cv2.imread(image_file)
 
-    markers = ar.detect_markers(test_image)
-    print(test_image.shape)
+    markers = ar.detect_markers(frame)
+    print(frame.shape)
     print(markers)
     for marker in markers:
-        marker.highlite_marker(test_image)
-    cv2.imshow("Markers", test_image)
+        marker.highlite_marker(frame)
+    cv2.imshow("Markers", frame)
     cv2.waitKey(0)
-    cv2.imwrite(output_image, test_image)
+    #cv2.imwrite(output_image, frame)
     return markers
 
 
@@ -177,10 +176,10 @@ def transform_point(point: (int, int), transform_metadata: TransformMetadata):
     :param M: transformation matrix
     :return: prints point that point is transformed to in new plane
     """
-    a = np.array(np.array([point], dtype='float32'))
+    a = np.array([np.array([point], dtype='float32')])
     cur = cv2.perspectiveTransform(a, transform_metadata.transformation_matrix)
-    x = cur.flatten()[0] * transform_metadata.desired_dim[0] / transform_metadata.im_dims[0]
-    y = cur.flatten()[1] * transform_metadata.desired_dim[1] / transform_metadata.im_dims[1]
+    x = cur.flatten()[0] * transform_metadata.desired_dimensions[0] / transform_metadata.im_dims[0]
+    y = cur.flatten()[1] * transform_metadata.desired_dimensions[1] / transform_metadata.im_dims[1]
     return x, y
 
 
@@ -192,7 +191,6 @@ def get_transform_video(video_path, desired_dimensions=(850, 1100)):
     m, im_dims = transform_image(frame)
     return TransformMetadata(m, im_dims, desired_dimensions)
 
-
 #transform_and_markers("images/arFour.jpg")
 '''
 dig_markers = find_markers("images/dig_ar_sample.jpg")
@@ -201,5 +199,6 @@ unaltered_markers = find_markers("images/ar_sample.jpg")
 my_mat, dims = transform_image("images/ar_sample.jpg", (816, 1056))
 print(transform_point(unaltered_markers[0].center, dims, (816, 1056), my_mat))
 '''
-get_transform_video("test_images/test.mp4")
+transform_metadata = get_transform_video("test_images/test.mp4")
+print(transform_point((591, 263), transform_metadata))
 # transform_point([0, 0], my_mat)
