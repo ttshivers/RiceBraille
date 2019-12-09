@@ -136,6 +136,9 @@ class VideoTracker:
             # draw bounding boxes over objects
             # selectROI's default behaviour is to draw box starting from the center
             # when fromCenter is set to false, you can draw box starting from top left corner
+            cv2.namedWindow('MultiTracker', 2)
+            #cv2.setWindowProperty("MultiTracker",cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
+
             bbox = cv2.selectROI('MultiTracker', frame)
             bboxes.append(bbox)
             colors.append((randint(0, 255), randint(0, 255), randint(0, 255)))
@@ -272,4 +275,4 @@ class VideoTracker:
 
 
 if __name__ == '__main__':
-    tracker = VideoTracker("./test_images/test.MOV", auto_calibrate=False, show_frame=True)
+    tracker = VideoTracker("./test_images/full_page2.MOV", auto_calibrate=False, show_frame=False)

@@ -61,10 +61,10 @@ def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jp
 
     # show the contour (outline) of the piece of paper
     print("STEP 2: Find contours of paper")
-    cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
-    cv2.imshow("Outline", image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    #cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
+    #cv2.imshow("Outline", image)
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
 
     # apply the four point transform to obtain a top-down
     # view of the original image
@@ -97,8 +97,8 @@ def find_markers(frame, output_image="markers.jpg"):
     print(markers)
     for marker in markers:
         marker.highlite_marker(frame)
-    cv2.imshow("Markers", frame)
-    cv2.waitKey(0)
+    #cv2.imshow("Markers", frame)
+    #cv2.waitKey(0)
     #cv2.imwrite(output_image, frame)
     return markers
 
