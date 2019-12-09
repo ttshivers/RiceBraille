@@ -69,7 +69,7 @@ def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jp
     # apply the four point transform to obtain a top-down
     # view of the original image
     M, warped, dims = four_point_transform(orig, screenCnt.reshape(4, 2))
-    find_markers(warped)
+    #find_markers(warped)
     # convert the warped image to grayscale, then threshold it
     # to give it that 'black and white' paper effect
     # warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
@@ -82,6 +82,8 @@ def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jp
     #cv2.imwrite(output_image, cv2.resize(warped, paper_dims))
     #cv2.imshow("Scanned", cv2.resize(warped, paper_dims))
     #cv2.waitKey(0)
+
+    print("Done transform initialization")
 
     return M, dims
 
@@ -231,3 +233,8 @@ def test_angles(orig_img, video_path):
 #print(cap.get(cv2.CAP_PROP_FPS))
 #transform_point([0, 0], my_mat)
 #test_angles("images/ar_dig.png", "images/angles.mp4")
+
+
+devon_coords = [(1.1875, 1.78125), (1.96875, 2.5625), (6.375, 3.0625), (9, 4.375), (3.875, 5.5), (6.4375, 6.3125), (9.125, 7.46875), (2.4375, 8.4375), (5.65625, 9.125), (9, 10.125)]
+transformed_coords = [(11.5 - x, 11 - y) for x, y in devon_coords]
+print(transformed_coords)

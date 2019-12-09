@@ -185,31 +185,31 @@ class VideoTracker:
         :return:
         """
         with open('BrailleOutput.txt', 'w+') as outfile:
-            outfile.write('Frame\tX Coordinate 1'
-                          '\tY Coordinate 1'
-                          '\tX Coordinate 2'
-                          '\tY Coordinate 2'
-                          '\tX Coordinate 3'
-                          '\tY Coordinate 3'
-                          '\tX Coordinate 4'
-                          '\tY Coordinate 4'
-                          '\tX Coordinate 5'
-                          '\tY Coordinate 5'
-                          '\tX Coordinate 6'
-                          '\tY Coordinate 6'
-                          '\tX Coordinate 7'
-                          '\tY Coordinate 7'
-                          '\tX Coordinate 8'
-                          '\tY Coordinate 8\n')
+            outfile.write('Frame\tX1'
+                          '\tY1'
+                          '\tX2'
+                          '\tY2'
+                          '\tX3'
+                          '\tY3'
+                          '\tX4'
+                          '\tY4'
+                          '\tX5'
+                          '\tY5'
+                          '\tX6'
+                          '\tY6'
+                          '\tX7'
+                          '\tY7'
+                          '\tX8'
+                          '\tY8\n')
 
             for i in range(len(x_centers)):
-                row_data = str(i) + '\t'
-                for box in range(8):
-                    if box != 7:
-                        row_data += str(x_centers[i][box]) + '\t' + str(y_centers[i][box]) + '\t'
-                    else:
-                        row_data += str(x_centers[8][box]) + '\t' + str(y_centers[8][box])
-                    outfile.write(row_data + '\n')
+                frame_str = str(i) + '\t' + "\t".join(["{0}\t{1}".format(x, y) for x, y in zip(x_centers[i], y_centers[i])])
+                # for box in range(8):
+                #     if box != 7:
+                #         row_data += str(x_centers[i][box]) + '\t' + str(y_centers[i][box]) + '\t'
+                #     else:
+                #         row_data += str(x_centers[8][box]) + '\t' + str(y_centers[8][box])
+                outfile.write(frame_str + '\n')
         return x_centers, y_centers
 
     def process_tracker(self, cap, multi_tracker, colors, video_out, show_frame=False):
@@ -229,19 +229,24 @@ class VideoTracker:
 
         # Process video and track objects
         while cap.isOpened():
-            x_centers_per_frame = [[]] * 8
-            y_centers_per_frame = [[]] * 8
+            print("Processing frame: {0}".format(frame_num))
 
             success, frame = cap.read()
-            try:
-                if not success:
-                    break
-                frame = cv2.resize(frame, (1920, 1080))
-            except Exception("Frame read failure"):
+            if not success:
                 break
+            # Don't need to resize if already 1080p. Maybe speeds up
+            # try:
+            #     if not success:
+            #         break
+            #     frame = cv2.resize(frame, (1920, 1080))
+            # except Exception("Frame read failure"):
+            #     break
 
             # get updated location of objects in subsequent frames
             success, boxes = multi_tracker.update(frame)
+
+            x_centers_per_frame = [0] * 8
+            y_centers_per_frame = [0] * 8
 
             # draw tracked objects
             for i, newbox in enumerate(boxes):
@@ -260,11 +265,12 @@ class VideoTracker:
             x_centers.append(x_centers_per_frame)
             y_centers.append(y_centers_per_frame)
             frame_num += 1
+            #print(x_centers, y_centers)
 
             # show frame
             if show_frame:
                 cv2.imshow('MultiTracker', frame)
-            video_out.write(frame)
+                video_out.write(frame)
 
             # quit on ESC button
             if cv2.waitKey(1) & 0xFF == 27:  # Esc pressed
@@ -275,4 +281,4 @@ class VideoTracker:
 
 
 if __name__ == '__main__':
-    tracker = VideoTracker("./test_images/full_page2.MOV", auto_calibrate=False, show_frame=False)
+    tracker = VideoTracker("./test_images/full_page2.MOV", auto_calibrate=False, show_frame=True)
