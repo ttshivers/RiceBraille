@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0a31789c-8865-4d64-bbeb-dac40e4b2170" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyimagesearch/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyimagesearch/transform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VideoTracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/VideoTracker.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scan.py" beforeDir="false" afterPath="$PROJECT_DIR$/scan.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,10 +36,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.scan">
+  <component name="RunManager" selected="Python.VideoTracker">
     <configuration name="SeniorDesign" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="SeniorDesign" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -113,8 +114,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.scan" />
         <item itemvalue="Python.VideoTracker" />
+        <item itemvalue="Python.scan" />
         <item itemvalue="Python.SeniorDesign" />
       </list>
     </recent_temporary>
@@ -141,6 +142,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1569789403371</updated>
+      <workItem from="1575918505173" duration="2261000" />
     </task>
     <task id="LOCAL-00001" summary="workspace changes">
       <created>1572896615143</created>
@@ -205,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575839393737</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="more testing for markers">
+      <created>1575840731874</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1575840731874</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +241,8 @@
     <MESSAGE value="added comments and cleaned code" />
     <MESSAGE value="changes" />
     <MESSAGE value="commented out debug frame show" />
-    <option name="LAST_COMMIT_MESSAGE" value="commented out debug frame show" />
+    <MESSAGE value="more testing for markers" />
+    <option name="LAST_COMMIT_MESSAGE" value="more testing for markers" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575838174530">
@@ -247,57 +257,57 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="679" y="146" key="#scan_(1)/0.0.1920.1040@0.0.1920.1040" timestamp="1575838163562" />
-    <state x="582" y="114" key="CommitChangelistDialog2" timestamp="1575839393029">
+    <state x="582" y="114" key="CommitChangelistDialog2" timestamp="1575840731180">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="582" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1575839393029" />
-    <state width="1878" height="282" key="GridCell.Tab.0.bottom" timestamp="1575840688360">
+    <state x="582" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1575840731180" />
+    <state width="1878" height="282" key="GridCell.Tab.0.bottom" timestamp="1575920710210">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1575840688360" />
-    <state width="1878" height="282" key="GridCell.Tab.0.center" timestamp="1575840688360">
+    <state width="1878" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1575920710210" />
+    <state width="1878" height="282" key="GridCell.Tab.0.center" timestamp="1575920710209">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1575840688360" />
-    <state width="1878" height="282" key="GridCell.Tab.0.left" timestamp="1575840688360">
+    <state width="1878" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1575920710209" />
+    <state width="1878" height="282" key="GridCell.Tab.0.left" timestamp="1575920710209">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1575840688360" />
-    <state width="1878" height="282" key="GridCell.Tab.0.right" timestamp="1575840688360">
+    <state width="1878" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1575920710209" />
+    <state width="1878" height="282" key="GridCell.Tab.0.right" timestamp="1575920710209">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1575840688360" />
-    <state width="1878" height="348" key="GridCell.Tab.1.bottom" timestamp="1575836544006">
+    <state width="1878" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1575920710209" />
+    <state width="1878" height="348" key="GridCell.Tab.1.bottom" timestamp="1575840840173">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1575836544006" />
-    <state width="1878" height="348" key="GridCell.Tab.1.center" timestamp="1575836544006">
+    <state width="1878" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1575840840173" />
+    <state width="1878" height="348" key="GridCell.Tab.1.center" timestamp="1575840840173">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1575836544006" />
-    <state width="1878" height="348" key="GridCell.Tab.1.left" timestamp="1575836544006">
+    <state width="1878" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1575840840173" />
+    <state width="1878" height="348" key="GridCell.Tab.1.left" timestamp="1575840840173">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1575836544006" />
-    <state width="1878" height="348" key="GridCell.Tab.1.right" timestamp="1575836544006">
+    <state width="1878" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1575840840173" />
+    <state width="1878" height="348" key="GridCell.Tab.1.right" timestamp="1575840840173">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1575836544006" />
+    <state width="1878" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1575840840173" />
     <state x="462" y="162" key="SettingsEditor" timestamp="1575837589472">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="462" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1575837589472" />
-    <state x="553" y="252" key="Vcs.Push.Dialog.v2" timestamp="1575839394924">
+    <state x="553" y="252" key="Vcs.Push.Dialog.v2" timestamp="1575840732875">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="553" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1575839394924" />
-    <state x="687" y="311" key="git4idea.merge.GitPullDialog" timestamp="1575836532323">
+    <state x="553" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1575840732875" />
+    <state x="687" y="311" key="git4idea.merge.GitPullDialog" timestamp="1575918602672">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="687" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575836532323" />
+    <state x="687" y="311" key="git4idea.merge.GitPullDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575918602672" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/RiceBraille$scan.coverage" NAME="scan Coverage Results" MODIFIED="1575840688353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/RiceBraille$VideoTracker.coverage" NAME="VideoTracker Coverage Results" MODIFIED="1575836703195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RiceBraille$scan.coverage" NAME="scan Coverage Results" MODIFIED="1575919804897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RiceBraille$VideoTracker.coverage" NAME="VideoTracker Coverage Results" MODIFIED="1575920710199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

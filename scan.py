@@ -2,6 +2,9 @@
 # python scan.py --image images/page.jpg
 
 # import the necessary packages
+from dataclasses import dataclass
+from typing import Any
+
 from pyimagesearch.transform import four_point_transform
 from skimage.filters import threshold_local
 import ar_markers as ar
@@ -11,19 +14,19 @@ import numpy as np
 
 import pyzbar.pyzbar as pyzbar
 
-def transform_image(image_file, paper_dims=(825, 1100), output_image="scannedImage.jpg"):
+
+def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jpg"):
     """
-    :param image_file: name of image to read from
+    :param image: image frame
     :param paper_dims: dimensions of paper (in pixels) to scale scanned image to
     :param output_image: name of file to write new image to
     :return: returns transformation matrix
     """
     # load the image and compute the ratio of the old height
     # to the new height, clone it, and resize it
-    image = image_file
-    ratio = image.shape[0] / 500.0
+    #ratio = image.shape[0] / 500.0
     orig = image.copy()
-    image = imutils.resize(image, height=500)
+    #image = imutils.resize(image, height=500)
 
     # convert the image to grayscale, blur it, and find edges
     # in the image
@@ -33,10 +36,10 @@ def transform_image(image_file, paper_dims=(825, 1100), output_image="scannedIma
 
     # show the original image and the edge detected image
     print("STEP 1: Edge Detection")
-    cv2.imshow("Image", image)
-    cv2.imshow("Edged", edged)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    #cv2.imshow("Image", image)
+    #cv2.imshow("Edged", edged)
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
 
     # find the contours in the edged image, keeping only the
     # largest ones, and initialize the screen contour
@@ -65,8 +68,8 @@ def transform_image(image_file, paper_dims=(825, 1100), output_image="scannedIma
 
     # apply the four point transform to obtain a top-down
     # view of the original image
-    M, warped, dims = four_point_transform(orig, screenCnt.reshape(4, 2) * ratio)
-
+    M, warped, dims = four_point_transform(orig, screenCnt.reshape(4, 2))
+    find_markers(warped)
     # convert the warped image to grayscale, then threshold it
     # to give it that 'black and white' paper effect
     # warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
@@ -76,32 +79,32 @@ def transform_image(image_file, paper_dims=(825, 1100), output_image="scannedIma
     # show the original and scanned images
     print("STEP 3: Apply perspective transform")
 
-    cv2.imwrite(output_image, cv2.resize(warped, paper_dims))
-    cv2.imshow("Scanned", cv2.resize(warped, paper_dims))
-    cv2.waitKey(0)
+    #cv2.imwrite(output_image, cv2.resize(warped, paper_dims))
+    #cv2.imshow("Scanned", cv2.resize(warped, paper_dims))
+    #cv2.waitKey(0)
 
     return M, dims
 
 
-def find_markers(image_file, output_image="markers.jpg"):
+def find_markers(frame, output_image="markers.jpg"):
     """
     :param image_file: filename to read from
     :param output_image: name of file to write new images to
     """
-    test_image = cv2.imread(image_file)
 
-    markers = ar.detect_markers(test_image)
-    print(test_image.shape)
+    markers = ar.detect_markers(frame)
+    print(frame.shape)
     print(markers)
     for marker in markers:
-        marker.highlite_marker(test_image)
-    cv2.imshow("Markers", test_image)
-    #cv2.waitKey(0)
-    cv2.imwrite(output_image, test_image)
+        marker.highlite_marker(frame)
+    cv2.imshow("Markers", frame)
+    cv2.waitKey(0)
+    #cv2.imwrite(output_image, frame)
     return markers
 
 
-def transform_and_markers(image_file, paper_dims=(825, 1100), scanned_output="scanned.jpg", final_output="scannedMarkers.jpg"):
+def transform_and_markers(image_file, paper_dims=(825, 1100), scanned_output="scanned.jpg",
+                          final_output="scannedMarkers.jpg"):
     """
     :param image_file: original image file to read from
     :param paper_dims: paper dims to scale to (as used in transform image)
@@ -109,7 +112,8 @@ def transform_and_markers(image_file, paper_dims=(825, 1100), scanned_output="sc
     :param final_output: file name for image with ar markers detect
     """
     transform_image(image_file, paper_dims, scanned_output)
-    return find_markers(scanned_output, final_output)
+    find_markers(scanned_output, final_output)
+
 
 def decode(im):
     # Find barcodes and QR codes
@@ -158,28 +162,36 @@ def transform_and_qr(image_file, paper_dims=(425, 550), scanned_output="scanned.
     transform_image(image_file, paper_dims, scanned_output)
     find_qr_code(scanned_output, final_output)
 
-def transform_point(point: [int, int], cur_dim:(int, int), desired_dim: (int, int), m):
+
+@dataclass(frozen=True)
+class TransformMetadata:
+    transformation_matrix: Any
+    im_dims: (int, int)
+    desired_dimensions: (int, int)
+
+
+def transform_point(point: (int, int), transform_metadata: TransformMetadata):
     """
     :param point: point in original plane
     :param M: transformation matrix
     :return: prints point that point is transformed to in new plane
     """
-    a = np.array([point], dtype='float32')
-    a = np.array([a])
-    cur = cv2.perspectiveTransform(a, m)
-    x = cur.flatten()[0]*desired_dim[0]/cur_dim[0]
-    y = cur.flatten()[1]*desired_dim[1]/cur_dim[1]
-    print((x,y))
+    a = np.array([np.array([point], dtype='float32')])
+    cur = cv2.perspectiveTransform(a, transform_metadata.transformation_matrix)
+    x = cur.flatten()[0] * transform_metadata.desired_dimensions[0] / transform_metadata.im_dims[0]
+    y = cur.flatten()[1] * transform_metadata.desired_dimensions[1] / transform_metadata.im_dims[1]
+    return x, y
 
 
-def get_transform_video(video_path):
+def get_transform_video(video_path, desired_dimensions=(8.5, 11.0)):
     cap = cv2.VideoCapture(video_path)
+    video_length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    cap.set(cv2.CAP_PROP_POS_FRAMES, video_length - 50)
     ret, frame = cap.read()
-    cv2.imshow("frame", frame)
-    cv2.imwrite("video_frame.jpg", frame)
-    cv2.waitKey(0)
-    m, im_dims = transform_image("video_frame.jpg")
-    return m, im_dims
+    #cv2.imshow("frame", frame)
+    #cv2.waitKey(0)
+    m, im_dims = transform_image(frame)
+    return TransformMetadata(m, im_dims, desired_dimensions)
 
 #transform_and_markers("images/arFour.jpg")
 '''
@@ -189,6 +201,9 @@ unaltered_markers = find_markers("images/ar_sample.jpg")
 my_mat, dims = transform_image("images/ar_sample.jpg", (816, 1056))
 print(transform_point(unaltered_markers[0].center, dims, (816, 1056), my_mat))
 '''
+#transform_metadata = get_transform_video("test_images/test.mp4")
+#print(transform_point((591, 263), transform_metadata))
+# transform_point([0, 0], my_mat)
 
 def test_angles(orig_img, video_path):
     cap = cv2.VideoCapture(video_path)
@@ -215,4 +230,4 @@ def test_angles(orig_img, video_path):
 #cv2.waitKey(0)
 #print(cap.get(cv2.CAP_PROP_FPS))
 #transform_point([0, 0], my_mat)
-test_angles("images/ar_dig.png", "images/angles.mp4")
+#test_angles("images/ar_dig.png", "images/angles.mp4")

@@ -1,12 +1,15 @@
 import cv2
 from random import randint
 
+import scan
+
 
 class VideoTracker:
     """Video Tracker Class"""
     trackerTypes = ['BOOSTING', 'MIL', 'KCF', 'TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT']
 
-    def __init__(self, video_path, tracker_type="CSRT", auto_calibrate=False, output_path='./test_output/output.mp4', show_frame=False):
+    def __init__(self, video_path, tracker_type="CSRT", auto_calibrate=False, output_path='./test_output/output.mp4',
+                 show_frame=False):
         """
         init video tracker
         :param video_path: Path of input video
@@ -44,6 +47,8 @@ class VideoTracker:
         # open and set properties
         video_out = cv2.VideoWriter()
         video_out.open(self.output_path, output_format, self.fps, (self.vid_width, self.vid_height), True)
+
+        self.transformation_metadata = scan.get_transform_video(video_path, (11.5, 11.0))
 
         # run tracker and save video
         print(self.process_tracker(self.cap, multi_tracker, colors, video_out, show_frame))
@@ -243,8 +248,10 @@ class VideoTracker:
 
                 x_center_pixel = boxes[i][0] + boxes[i][2] / 2
                 y_center_pixel = boxes[i][1] + boxes[i][3] / 2
-                x_centers_per_frame[i] = x_center_pixel
-                y_centers_per_frame[i] = y_center_pixel
+
+                x_centers_per_frame[i], y_centers_per_frame[i] = scan.transform_point((x_center_pixel, y_center_pixel), self.transformation_metadata)
+                #x_centers_per_frame[i] = x_center_pixel
+                #y_centers_per_frame[i] = y_center_pixel
 
             # add coordinates from this frame to overall coordinate list
             x_centers.append(x_centers_per_frame)
@@ -265,8 +272,4 @@ class VideoTracker:
 
 
 if __name__ == '__main__':
-    tracker = VideoTracker("./test_images/dec_8_trials/dec_8_1.MOV", auto_calibrate=False, show_frame=True)
-
-
-
-
+    tracker = VideoTracker("./test_images/test.MOV", auto_calibrate=False, show_frame=True)
