@@ -233,8 +233,3 @@ def test_angles(orig_img, video_path):
 #print(cap.get(cv2.CAP_PROP_FPS))
 #transform_point([0, 0], my_mat)
 #test_angles("images/ar_dig.png", "images/angles.mp4")
-
-
-devon_coords = [(1.1875, 1.78125), (1.96875, 2.5625), (6.375, 3.0625), (9, 4.375), (3.875, 5.5), (6.4375, 6.3125), (9.125, 7.46875), (2.4375, 8.4375), (5.65625, 9.125), (9, 10.125)]
-transformed_coords = [(11.5 - x, 11 - y) for x, y in devon_coords]
-print(transformed_coords)
