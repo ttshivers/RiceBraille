@@ -108,7 +108,13 @@ class VideoTracker:
         """
         # Read first frame
         success, frame = self.cap.read()
-        frame = cv2.resize(frame, (1920, 1080))
+
+        try:
+            frame = cv2.resize(frame, (1920, 1080))
+        except cv2.error as err:
+            print("Failed to read video")
+            raise err
+
         self.vid_width = 1920
         self.vid_height = 1080
 
@@ -234,13 +240,13 @@ class VideoTracker:
             success, frame = cap.read()
             if not success:
                 break
-            # Don't need to resize if already 1080p. Maybe speeds up
-            # try:
-            #     if not success:
-            #         break
-            #     frame = cv2.resize(frame, (1920, 1080))
-            # except Exception("Frame read failure"):
-            #     break
+
+            try:
+                if not success:
+                    break
+                frame = cv2.resize(frame, (1920, 1080))
+            except Exception("Frame read failure"):
+                break
 
             # get updated location of objects in subsequent frames
             success, boxes = multi_tracker.update(frame)
@@ -281,4 +287,4 @@ class VideoTracker:
 
 
 if __name__ == '__main__':
-    tracker = VideoTracker("./test_images/full_page2.MOV", auto_calibrate=False, show_frame=True)
+    tracker = VideoTracker("./test_images/full_page2.MOV", auto_calibrate=False, show_frame=True, tracker_type="CSRT")
