@@ -36,10 +36,11 @@ def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jp
 
     # show the original image and the edge detected image
     print("STEP 1: Edge Detection")
-    #cv2.imshow("Image", image)
-    #cv2.imshow("Edged", edged)
-    #cv2.waitKey(0)
-    #cv2.destroyAllWindows()
+    cv2.imshow("Image", image)
+    edgedS = cv2.resize(edged, (960, 540))
+    cv2.imshow("Edged", edgedS)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     # find the contours in the edged image, keeping only the
     # largest ones, and initialize the screen contour
@@ -61,10 +62,11 @@ def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jp
 
     # show the contour (outline) of the piece of paper
     print("STEP 2: Find contours of paper")
-    #cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
-    #cv2.imshow("Outline", image)
-    #cv2.waitKey(0)
-    #cv2.destroyAllWindows()
+    cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
+    imageS = cv2.resize(image, (960, 540))
+    cv2.imshow("Outline", imageS)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
     # apply the four point transform to obtain a top-down
     # view of the original image
@@ -168,8 +170,8 @@ def transform_and_qr(image_file, paper_dims=(425, 550), scanned_output="scanned.
 @dataclass(frozen=True)
 class TransformMetadata:
     transformation_matrix: Any
-    im_dims: (int, int)
-    desired_dimensions: (int, int)
+    im_dims: (float, float)
+    desired_dimensions: (float, float)
 
 
 def transform_point(point: (int, int), transform_metadata: TransformMetadata):
@@ -185,13 +187,14 @@ def transform_point(point: (int, int), transform_metadata: TransformMetadata):
     return x, y
 
 
-def get_transform_video(video_path, desired_dimensions=(8.5, 11.0)):
+def get_transform_video(video_path, desired_dimensions=(27.94, 29.21)):
     cap = cv2.VideoCapture(video_path)
     video_length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    cap.set(cv2.CAP_PROP_POS_FRAMES, video_length - 50)
+    print(video_length)
+    cap.set(cv2.CAP_PROP_POS_FRAMES, video_length-200)
     ret, frame = cap.read()
-    #cv2.imshow("frame", frame)
-    #cv2.waitKey(0)
+    cv2.imshow("frame", frame)
+    cv2.waitKey(0)
     m, im_dims = transform_image(frame)
     return TransformMetadata(m, im_dims, desired_dimensions)
 
@@ -233,3 +236,5 @@ def test_angles(orig_img, video_path):
 #print(cap.get(cv2.CAP_PROP_FPS))
 #transform_point([0, 0], my_mat)
 #test_angles("images/ar_dig.png", "images/angles.mp4")
+
+#get_transform_video("images/englebretson4.MOV", (8.5, 11))
