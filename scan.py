@@ -14,14 +14,23 @@ import numpy as np
 
 import pyzbar.pyzbar as pyzbar
 
+screenCnt = []
 
-def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jpg"):
+def click(event, x, y, flag, image):
+    global screenCnt
+    if event == cv2.EVENT_LBUTTONDOWN:
+        coords = [[x, y]]
+        screenCnt.append(coords)
+
+
+def transform_image(image, automatic=False, paper_dims=(1100, 1150), output_image="scannedImage.jpg"):
     """
     :param image: image frame
     :param paper_dims: dimensions of paper (in pixels) to scale scanned image to
     :param output_image: name of file to write new image to
     :return: returns transformation matrix
     """
+    global screenCnt
     # load the image and compute the ratio of the old height
     # to the new height, clone it, and resize it
     #ratio = image.shape[0] / 500.0
@@ -36,32 +45,45 @@ def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jp
 
     # show the original image and the edge detected image
     print("STEP 1: Edge Detection")
-    cv2.imshow("Image", image)
+    cv2.namedWindow('CapturedImage', cv2.WINDOW_NORMAL)
+    cv2.imshow("CapturedImage", image)
+    cv2.imwrite("image.jpg", image)
     edgedS = cv2.resize(edged, (960, 540))
-    cv2.imshow("Edged", edgedS)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    #cv2.imshow("Edged", edgedS)
+
 
     # find the contours in the edged image, keeping only the
     # largest ones, and initialize the screen contour
-    cnts = cv2.findContours(edged.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-    cnts = imutils.grab_contours(cnts)
-    cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:5]
+    if automatic:
+        cnts = cv2.findContours(edged.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+        cnts = imutils.grab_contours(cnts)
+        cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:5]
 
-    # loop over the contours
-    for c in cnts:
-        # approximate the contour
-        peri = cv2.arcLength(c, True)
-        approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+        # loop over the contours
+        for c in cnts:
+            # approximate the contour
+            peri = cv2.arcLength(c, True)
+            approx = cv2.approxPolyDP(c, 0.02 * peri, True)
 
-        # if our approximated contour has four points, then we
-        # can assume that we have found our screen
-        if len(approx) == 4:
-            screenCnt = approx
-            break
-
+            # if our approximated contour has four points, then we
+            # can assume that we have found our screen
+            if len(approx) == 4:
+                screenCnt = approx
+                break
+    else:
+        cv2.setMouseCallback('CapturedImage', click, image)
+        while(len(screenCnt) < 4):
+            key = cv2.waitKey(1) & 0xFF
+            if key == 27 or key == ord("q"):
+                print('Image cropped at coordinates: {}'.format(screenCnt))
+                cv2.destroyAllWindows()
+                break
+        screenCnt = np.asarray(screenCnt)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
     # show the contour (outline) of the piece of paper
     print("STEP 2: Find contours of paper")
+    print(screenCnt)
     cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
     imageS = cv2.resize(image, (960, 540))
     cv2.imshow("Outline", imageS)
@@ -83,7 +105,7 @@ def transform_image(image, paper_dims=(825, 1100), output_image="scannedImage.jp
 
     #cv2.imwrite(output_image, cv2.resize(warped, paper_dims))
     #cv2.imshow("Scanned", cv2.resize(warped, paper_dims))
-    #cv2.waitKey(0)
+    cv2.waitKey(0)
 
     print("Done transform initialization")
 
@@ -187,15 +209,15 @@ def transform_point(point: (int, int), transform_metadata: TransformMetadata):
     return x, y
 
 
-def get_transform_video(video_path, desired_dimensions=(27.94, 29.21)):
+def get_transform_video(video_path, desired_dimensions=(27.94, 29.21), auto_page_calibrate=True):
     cap = cv2.VideoCapture(video_path)
     video_length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     print(video_length)
-    cap.set(cv2.CAP_PROP_POS_FRAMES, video_length-200)
+    cap.set(cv2.CAP_PROP_POS_FRAMES, video_length-60)
     ret, frame = cap.read()
     cv2.imshow("frame", frame)
     cv2.waitKey(0)
-    m, im_dims = transform_image(frame)
+    m, im_dims = transform_image(frame, automatic=auto_page_calibrate)
     return TransformMetadata(m, im_dims, desired_dimensions)
 
 #transform_and_markers("images/arFour.jpg")
