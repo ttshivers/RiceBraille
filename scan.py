@@ -37,6 +37,17 @@ def transform_image(image, automatic=False, paper_dims=(1100, 1150), output_imag
     orig = image.copy()
     #image = imutils.resize(image, height=500)
 
+    #code to mask everything but neon green to black: helps distinguish page from background
+    lower = np.array([30, 50, 50])
+    upper = np.array([50, 255, 255])
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    mask = cv2.inRange(hsv, lower, upper)
+    mask[mask > 0] = 1
+    new_mask = np.subtract(np.ones(np.shape(mask)), mask)
+    new_mask = new_mask.astype('uint8')
+    image = cv2.bitwise_and(image, image, mask=new_mask)
+
+
     # convert the image to grayscale, blur it, and find edges
     # in the image
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -84,7 +95,11 @@ def transform_image(image, automatic=False, paper_dims=(1100, 1150), output_imag
     # show the contour (outline) of the piece of paper
     print("STEP 2: Find contours of paper")
     print(screenCnt)
-    cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
+    try:
+        cv2.drawContours(image, [screenCnt], -1, (0, 255, 0), 2)
+    except TypeError:
+        transform_image(orig, automatic=False, paper_dims=paper_dims, output_image=output_image)
+
     imageS = cv2.resize(image, (960, 540))
     cv2.imshow("Outline", imageS)
     cv2.waitKey(0)
