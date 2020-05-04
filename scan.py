@@ -235,7 +235,6 @@ def get_transform_video(video_path, desired_dimensions=(27.94, 29.21), auto_page
     m, im_dims = transform_image(frame, automatic=auto_page_calibrate)
     return TransformMetadata(m, im_dims, desired_dimensions)
 
-#transform_and_markers("images/arFour.jpg")
 '''
 dig_markers = find_markers("images/dig_ar_sample.jpg")
 transform_and_markers("images/ar_sample.jpg", (816, 1056))

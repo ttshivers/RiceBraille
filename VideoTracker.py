@@ -229,7 +229,7 @@ class VideoTracker:
 
         # Process video and track objects
         while cap.isOpened():
-            print("Processing frame: {0}".format(frame_num))
+            #print("Processing frame: {0}".format(frame_num))
 
             success, frame = cap.read()
             if not success:
